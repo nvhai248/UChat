@@ -1,0 +1,78 @@
+<div class="row bg-white mt-5" style="height: 90%">
+  <div class="col-4 border-end border-5">
+    <div class="row border-bottom border-5">
+      <div class="col-3">
+        <div class="yourInfo">
+          <img
+            class="rounded-circle border-5"
+            src="{{user.photo}}"
+            alt="avt"
+            style="height: 100%"
+          />
+        </div>
+      </div>
+      <div class="col-7 mt-2">
+        <h6>{{user.name}}</h6>
+        <p>{{user.email}}</p>
+      </div>
+
+      <div class="col-2">
+        <div class="menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-list"
+            viewBox="0 0 16 16"
+            style="width: 100%; height: 100%; cursor: pointer;"
+            data-bs-toggle="modal"
+            data-bs-target="#editProfileModel"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="container-fluid mt-3 border-bottom">
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2 border-1"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button
+            class="btn btn-outline-success border-1"
+            type="submit"
+          >Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div class="row border-bottom border-5">
+      <div class="col-10">
+        🌎
+      </div>
+      <div class="col-2">
+        <form action="/logout" method="POST">
+          <button
+            type="submit"
+            class="btn btn-primary rounded-0"
+            style="width: 110%; height: 100%;"
+          >Logout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{{!-- {{> editProfileModel}} --}}

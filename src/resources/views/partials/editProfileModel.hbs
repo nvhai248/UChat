@@ -1,0 +1,136 @@
+<!-- Modal -->
+<div
+  class="modal modal-xl fade"
+  id="editProfileModel"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="editProfileModelLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editProfileModelLabel">Your Information</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-3 choose-avt border-end">
+            <input type="file" class="inputPhoto" />
+            <div class="changePhoto">Change Avatar</div>
+            <img src="{{user.photo}}" alt="avt" class="photo" />
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-6">
+                {{! Input name }}
+                <div class="mb-3">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Nguyen Van A"
+                    value="{{user.name}}"
+                  />
+                </div>
+              </div>
+
+              <div class="col-6">
+                {{! Input email }}
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email
+                    <span class="text-danger">* (This email maybe use for login
+                      next session)</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    placeholder="name@example.com"
+                    value="{{user.email}}"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  {{! Input BD }}
+                  <div class="mb-3">
+                    <label for="BD" class="form-label">Birthday
+                      <span class="text-danger">
+                        (Please enter correct your birthday)</span>
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="BD"
+                      placeholder="DD/MM/YYYY"
+                      max="1/1/2010"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  {{! Input Province }}
+                  <div class="mb-3">
+                    <label for="ls_province" class="form-label">Tỉnh / Thành phố</label>
+                    <select
+                      class="form-control"
+                      id="ls_province"
+                      name="ls_province"
+                    >
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  {{! Input district }}
+                  <div class="mb-3">
+                    <label for="ls_district" class="form-label">Quận / Huyện</label>
+                    <select
+                      class="form-control"
+                      id="ls_district"
+                      name="ls_district"
+                    >
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6">
+                  {{! Input ward }}
+                  <div class="mb-3">
+                    <label for="ls_ward" class="form-label">Xã / Phường</label>
+                    <select class="form-control" id="ls_ward" name="ls_ward">
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <p>Is Active✅</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >Close</button>
+        <button type="button" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/handleLocation/vietnamlocalselector.js"></script>
+<script src="js/handleLocation/localDistrict.js"></script>
