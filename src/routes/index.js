@@ -1,5 +1,6 @@
 const logRoute = require('./log.route');
 const homeRoute = require('./home.route');
+const verifyRoute = require('./verify.route');
 
 function routes(app) {
     // control remember login session 
@@ -14,6 +15,7 @@ function routes(app) {
 
     app.use('/', logRoute);
     app.use('/home', homeRoute);
+    app.use('/verify', verifyRoute);
 }
 
 module.exports = routes;

@@ -6,6 +6,10 @@ class HomeController {
         if (req.isAuthenticated()) {
             const userID = req.session.passport.user;
             const user = mongoose_helpers.mongoosesToObject(await Customer_account.findOne({ _id: userID }));
+
+            // is not have been verify go to require verify
+            if (!(user.state)) return res.redirect('/verify/not-have-been-verified');
+
             return res.render("home", {
                 user: user,
             });

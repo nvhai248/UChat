@@ -8,11 +8,7 @@ const flash = require('connect-flash');
 const Customer_account = require('../app/Models/customer.user');
 const dotenv = require('dotenv');
 const my_nodemailer = require('./node-mailer');
-const { v4: uuidv4 } = require('uuid');
 
-function generateVerificationToken() {
-    return uuidv4();
-}
 
 function generatePassword(length) {
     let password = '';
@@ -77,7 +73,7 @@ module.exports = app => {
                 await Customer_account.updateOne({ email: clientEmail }, { facebookID: profile.id });
                 return done(null, is_auth_with_other_way);
             }
-            const token = generateVerificationToken();
+            const token = my_nodemailer.generateVerificationToken();
             userSave = new Customer_account({
                 facebookID: profile.id,
                 name: profile.displayName,
@@ -87,7 +83,6 @@ module.exports = app => {
                 state: 0,
                 verificationToken: token,
             });
-            my_nodemailer.sendVerificationEmail(clientEmail, token);
             userSave.save();
             done(null, userSave);
         }
@@ -112,7 +107,7 @@ module.exports = app => {
                 await Customer_account.updateOne({ email: clientEmail }, { googleID: profile.id });
                 return done(null, is_auth_with_other_way);
             }
-            const token = generateVerificationToken();
+            const token = my_nodemailer.generateVerificationToken();
             const newUser = await Customer_account.create({
                 googleID: profile.id,
                 displayName: profile.displayName,
@@ -122,7 +117,6 @@ module.exports = app => {
                 state: 0,
                 verificationToken: token,
             });
-            my_nodemailer.sendVerificationEmail(clientEmail, token);
             newUser.save();
             done(null, newUser);
         } catch (error) {

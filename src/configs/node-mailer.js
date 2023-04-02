@@ -1,4 +1,9 @@
 const nodemailer = require('nodemailer');
+const { v4: uuidv4 } = require('uuid');
+
+function generateVerificationToken() {
+    return uuidv4();
+}
 
 const transporter = nodemailer.createTransport({
     service: 'SMTP',
@@ -26,4 +31,4 @@ function sendVerificationEmail(clientEmail, token) {
     });
 }
 
-module.exports = { sendVerificationEmail };
+module.exports = { sendVerificationEmail, generateVerificationToken };

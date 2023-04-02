@@ -4,9 +4,6 @@ const route = express.Router();
 
 const log = require('../app/Controllers/Log.controller');
 
-//GET verify
-route.get('/verify', log.verify);
-
 // POST register 
 route.post('/register', log.register);
 

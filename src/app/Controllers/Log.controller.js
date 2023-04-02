@@ -59,16 +59,11 @@ class LogController {
 
         // authenticate and go to homepage
         req.login(newCustomer, (err) => {
-            res.redirect('/home');
+            res.redirect('/not-have-been-verified');
         })
     }
 
-    verify = async (req, res) => {
-        const token = req.query.token;
-        await Customer_account.updateOne({ verificationToken: token }, { state: 1 });
-
-        res.redirect('/home');
-    }
+    
 }
 
 module.exports = new LogController();
