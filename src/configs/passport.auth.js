@@ -7,6 +7,12 @@ const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const Customer_account = require('../app/Models/customer.user');
 const dotenv = require('dotenv');
+const my_nodemailer = require('./node-mailer');
+const { v4: uuidv4 } = require('uuid');
+
+function generateVerificationToken() {
+    return uuidv4();
+}
 
 function generatePassword(length) {
     let password = '';
@@ -62,20 +68,28 @@ module.exports = app => {
         async function (accessToken, refreshToken, profile, done) {
             // find or create a user in the database based on the Facebook profile information
             const existingUser = await Customer_account.findOne({ facebookID: profile.id });
-            if (!existingUser) {
-                userSave = new Customer_account({
-                    facebookID: profile.id,
-                    name: profile.displayName,
-                    email: profile.emails[0].value,
-                    photo: profile.photos[0].value,
-                    password: generatePassword(10),
-                });
-                userSave.save();
-                done(null, userSave);
-            }       
-            else {
-                done(null, existingUser);
+            const clientEmail = profile.emails[0].value;
+            const is_auth_with_other_way = await Customer_account.findOne({ email: clientEmail });
+            if (existingUser) {
+                return done(null, existingUser);
             }
+            if (is_auth_with_other_way) {
+                await Customer_account.updateOne({ email: clientEmail }, { facebookID: profile.id });
+                return done(null, is_auth_with_other_way);
+            }
+            const token = generateVerificationToken();
+            userSave = new Customer_account({
+                facebookID: profile.id,
+                name: profile.displayName,
+                email: clientEmail,
+                photo: profile.photos[0].value,
+                password: generatePassword(10),
+                state: 0,
+                verificationToken: token,
+            });
+            my_nodemailer.sendVerificationEmail(clientEmail, token);
+            userSave.save();
+            done(null, userSave);
         }
     ));
 
@@ -88,18 +102,29 @@ module.exports = app => {
     }, async (accessToken, refreshToken, profile, done) => {
         try {
             const existingUser = await Customer_account.findOne({ googleID: profile.id });
+            const clientEmail = profile.emails[0].value;
+
             if (existingUser) {
-                done(null, existingUser);
-            } else {
-                const newUser = await Customer_account.create({
-                    googleID: profile.id,
-                    displayName: profile.displayName,
-                    email: profile.emails[0].value,
-                    photo: profile.photos[0].value,
-                    password: generatePassword(10),
-                });
-                done(null, newUser);
+                return done(null, existingUser);
             }
+            const is_auth_with_other_way = await Customer_account.findOne({ email: clientEmail });
+            if (is_auth_with_other_way) {
+                await Customer_account.updateOne({ email: clientEmail }, { googleID: profile.id });
+                return done(null, is_auth_with_other_way);
+            }
+            const token = generateVerificationToken();
+            const newUser = await Customer_account.create({
+                googleID: profile.id,
+                displayName: profile.displayName,
+                email: clientEmail,
+                photo: profile.photos[0].value,
+                password: generatePassword(10),
+                state: 0,
+                verificationToken: token,
+            });
+            my_nodemailer.sendVerificationEmail(clientEmail, token);
+            newUser.save();
+            done(null, newUser);
         } catch (error) {
             done(error, null);
         }

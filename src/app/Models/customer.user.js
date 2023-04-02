@@ -10,6 +10,8 @@ const Customer_account = new Schema({
     password: { type: String },
     address: { type: String },
     photo: { type: String },
+    state: { type: Boolean },
+    verificationToken: { type: String },
 }, {
     collection: 'customer_account',
     timestamps: true,

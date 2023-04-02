@@ -62,6 +62,13 @@ class LogController {
             res.redirect('/home');
         })
     }
+
+    verify = async (req, res) => {
+        const token = req.query.token;
+        await Customer_account.updateOne({ verificationToken: token }, { state: 1 });
+
+        res.redirect('/home');
+    }
 }
 
 module.exports = new LogController();

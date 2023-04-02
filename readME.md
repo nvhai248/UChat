@@ -1,6 +1,6 @@
 # UChat 
 
-# Author:
+## Author:
 Nguyễn Văn Hải - nvhai2408@gmail.com
 
 ## Description
@@ -10,13 +10,15 @@ This website provides environment for every one can chatting or video calls with
 
 ### Technical Details:
 
-``HTML, Css, JavaScript, Bootstrap`` : I used to create the display, animation and events for this web.
+``HTML, CSS, JavaScript, Bootstrap`` : I used to create the display, animation and events for this web.
 
 ``Nodejs and ExpressJS`` : I use to create a server for this web site handing events of clients and controlling database.
 
 ``MongoDB Atlas`` : This is database of the website server.
 
 ``PassportJS`` : i use for authentication with facebook, google.
+
+``nodemailer`` : for send email verify an account.
 
 ### Architecture: 
 ``MVC Modal`` : this is the architecture of this project.
