@@ -20,5 +20,6 @@ This website provides environment for every one can chatting or video calls with
 
 ``nodemailer`` : for send email verify an account.
 
+``multer`` : for handle file uploads.
 ### Architecture: 
 ``MVC Modal`` : this is the architecture of this project.

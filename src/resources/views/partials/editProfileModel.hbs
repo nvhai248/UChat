@@ -20,13 +20,13 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <div class="col-3 choose-avt border-end">
-            <input type="file" class="inputPhoto" />
-            <div class="changePhoto">Change Avatar</div>
-            <img src="{{user.photo}}" alt="avt" class="photo" />
-          </div>
-          <div class="col-9">
+        <form
+          action="/changeInfo"
+          method="POST"
+          id="form_change_info"
+        >
+          <div class="row">
+
             <div class="row">
               <div class="col-6">
                 {{! Input name }}
@@ -62,14 +62,14 @@
                 <div class="col-6">
                   {{! Input BD }}
                   <div class="mb-3">
-                    <label for="BD" class="form-label">Birthday
+                    <label for="birthday" class="form-label">Birthday
                       <span class="text-danger">
                         (Please enter correct your birthday)</span>
                     </label>
                     <input
                       type="date"
                       class="form-control"
-                      id="BD"
+                      id="birthday"
                       placeholder="DD/MM/YYYY"
                       max="1/1/2010"
                     />
@@ -118,7 +118,8 @@
               </div>
             </div>
           </div>
-        </div>
+        </form>
+
       </div>
       <div class="modal-footer">
         <button
@@ -126,11 +127,12 @@
           class="btn btn-secondary"
           data-bs-dismiss="modal"
         >Close</button>
-        <button type="button" class="btn btn-primary">Lưu</button>
+        <button type="button" class="btn btn-primary" id="saveInfo">Lưu</button>
       </div>
     </div>
   </div>
 </div>
 
+<script src="/js/change_info.js"></script>
 <script src="js/handleLocation/vietnamlocalselector.js"></script>
 <script src="js/handleLocation/localDistrict.js"></script>

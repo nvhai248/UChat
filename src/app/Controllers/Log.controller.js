@@ -1,5 +1,6 @@
 const Customer_account = require('../Models/customer.user');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 class LogController {
     // [GET] /
@@ -63,7 +64,20 @@ class LogController {
         })
     }
 
-    
+    changeAvatar = async (req, res) => {
+        const photoUrl = `${process.env.HOST}/uploads/` + req.file.filename;
+        const userID = req.session.passport.user;
+        await Customer_account.updateOne({ _id: userID }, { photo: photoUrl });
+        res.redirect('/home');
+    }
+
+    sendFile = (req, res) => {
+        // Get the path to the uploaded photo file
+        const photoPath = path.join(__dirname, '../../../uploads', req.params.filename);
+
+        // Send the photo file to the client
+        res.sendFile(photoPath);
+    }
 }
 
 module.exports = new LogController();

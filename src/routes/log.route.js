@@ -3,6 +3,13 @@ const passport = require("passport");
 const route = express.Router();
 
 const log = require('../app/Controllers/Log.controller');
+const upload = require("../configs/multer");
+
+// GET load file 
+route.get('/uploads/:filename', log.sendFile);
+
+// POST change info
+route.post('/changeAvatar', upload.single('photo'), log.changeAvatar);
 
 // POST register 
 route.post('/register', log.register);
