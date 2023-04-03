@@ -10,6 +10,7 @@
 >
   <div class="modal-dialog">
     <div class="modal-content">
+      {{! change information }}
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="editProfileModelLabel">Your Information</h1>
         <button
@@ -20,15 +21,11 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form
-          action="/changeInfo"
-          method="POST"
-          id="form_change_info"
-        >
+        <form action="/changeInfo" method="POST" id="form_change_info">
           <div class="row">
 
             <div class="row">
-              <div class="col-6">
+              <div>
                 {{! Input name }}
                 <div class="mb-3">
                   <label for="name" class="form-label">Full Name</label>
@@ -37,23 +34,8 @@
                     class="form-control"
                     id="name"
                     placeholder="Nguyen Van A"
+                    name="name"
                     value="{{user.name}}"
-                  />
-                </div>
-              </div>
-
-              <div class="col-6">
-                {{! Input email }}
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email
-                    <span class="text-danger">* (This email maybe use for login
-                      next session)</span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="email"
-                    placeholder="name@example.com"
-                    value="{{user.email}}"
                   />
                 </div>
               </div>
@@ -72,6 +54,8 @@
                       id="birthday"
                       placeholder="DD/MM/YYYY"
                       max="1/1/2010"
+                      name="birthday"
+                      value="{{user.birthday}}"
                     />
                   </div>
                 </div>
@@ -84,6 +68,7 @@
                       class="form-control"
                       id="ls_province"
                       name="ls_province"
+                      value="{{user.province}}"
                     >
                     </select>
                   </div>
@@ -99,6 +84,7 @@
                       class="form-control"
                       id="ls_district"
                       name="ls_district"
+                      value="{{user.district}}"
                     >
                     </select>
                   </div>
@@ -107,7 +93,12 @@
                   {{! Input ward }}
                   <div class="mb-3">
                     <label for="ls_ward" class="form-label">Xã / Phường</label>
-                    <select class="form-control" id="ls_ward" name="ls_ward">
+                    <select
+                      class="form-control"
+                      id="ls_ward"
+                      name="ls_ward"
+                      value="{{user.ward}}"
+                    >
                     </select>
                   </div>
                 </div>
@@ -122,12 +113,66 @@
 
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="saveInfo">Lưu</button>
+      </div>
+      {{! change pass area }}
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editProfileModelLabel">Change password</h1>
+      </div>
+      <div class="modal-body">
+        <form action="/changePass" method="POST" id="form_change_pass">
+          <div class="row">
+            <div class="col-3">
+              {{! Input password }}
+              <div class="mb-3">
+                <label for="name" class="form-label">Pass Word</label>
+                <input type="text" class="form-control" id="pass" name="pass" />
+              </div>
+            </div>
+
+            <div class="col-3">
+              {{! Input password }}
+              <div class="mb-3">
+                <label for="name" class="form-label">New Password</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newPass"
+                  name="newPass"
+                />
+              </div>
+            </div>
+
+            <div class="col-3">
+              {{! Input password }}
+              <div class="mb-3">
+                <label for="name" class="form-label">Confirm password</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="confirmPass"
+                  name="confirmPass"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="changePass"
+        >Lưu</button>
+      </div>
+
+      <div class="modal-footer">
         <button
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
         >Close</button>
-        <button type="button" class="btn btn-primary" id="saveInfo">Lưu</button>
       </div>
     </div>
   </div>

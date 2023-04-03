@@ -53,6 +53,8 @@ h5 {
 .changePhoto {
   position: absolute;
   font-size: 2rem;
+  width: 70%;
+  text-align: center;
   z-index: 1;
   background-color: rgb(199, 197, 197);
   opacity: 50%;

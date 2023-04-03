@@ -1,4 +1,5 @@
 const Customer_account = require('../Models/customer.user');
+const images = require('../Models/images');
 const bcrypt = require('bcrypt');
 const path = require('path');
 
@@ -64,10 +65,19 @@ class LogController {
         })
     }
 
+    // POST /change-avt
     changeAvatar = async (req, res) => {
-        const photoUrl = `${process.env.HOST}/uploads/` + req.file.filename;
+        const image = new images({
+            name: req.file.originalname,
+            data: req.file.buffer
+        });
+        //const photoUrl = `${process.env.HOST}/uploads/` + req.file.filename;
+        image.save();
+
+        const base64 = req.file.buffer.toString('base64');
+        const base64URL = 'data:image/png;base64,' + base64;
         const userID = req.session.passport.user;
-        await Customer_account.updateOne({ _id: userID }, { photo: photoUrl });
+        await Customer_account.updateOne({ _id: userID }, { photo: base64URL });
         res.redirect('/home');
     }
 
@@ -77,6 +87,20 @@ class LogController {
 
         // Send the photo file to the client
         res.sendFile(photoPath);
+    }
+
+    // POST changeInfo
+    changeInfo = async (req, res) => {
+        const data = {
+            name: req.body.name,
+            province: req.body.ls_province,
+            district: req.body.ls_district,
+            ward: req.body.ls_ward,
+            birthday: req.body.birthday,
+        }
+        const userID = req.session.passport.user;
+        await Customer_account.updateOne({ _id: userID }, data);
+        res.redirect('/home');
     }
 }
 

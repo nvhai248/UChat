@@ -3,7 +3,7 @@ $('#saveAvt').click(function (e) {
     $('#form_change_avt').submit();
 });
 
-
+// code for load img after choose in input tag
 const preview = document.getElementById('preview');
 const imageInput = document.getElementById('image');
 imageInput.addEventListener('change', (event) => {
