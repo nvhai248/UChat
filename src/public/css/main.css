@@ -61,3 +61,38 @@ h5 {
   top: 40%;
   left: 15%;
 }
+
+.scrollable {
+  overflow: auto;
+  width: 107%; /* Set the width of the scrollable area */
+  float: inline-start;
+  height: 80%;
+  /* width */
+}
+
+.mgsRight,
+.mgsLeft {
+  display: block;
+  min-height: 5rem;
+  background-color: aliceblue;
+  margin: 10px;
+  width: 97%;
+  border: 5px;
+}
+
+.icon-img-choose-chat {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.userTag {
+  background-color: aliceblue;
+  cursor: pointer;
+  width: 96%;
+}
+
+.icon-img-choose-chat :hover {
+  background-color: rgb(175, 175, 108);
+  transform: scale(1.1);
+}

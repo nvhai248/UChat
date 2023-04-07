@@ -10,8 +10,11 @@ class HomeController {
             // is not have been verify go to require verify
             if (!(user.state)) return res.redirect('/verify/not-have-been-verified');
 
+            const peoples = mongoose_helpers.multiMongooseToObject(await Customer_account.find());
+
             return res.render("home", {
                 user: user,
+                people: peoples,
             });
         }
         res.redirect('/');
