@@ -23,6 +23,3 @@ This website provides environment for every one can chatting or video calls with
 ``multer`` : for handle file uploads.
 ### Architecture: 
 ``MVC Modal`` : this is the architecture of this project.
-
-
-tôi có một ứng dụng gồm 1 server viết bằng nodeJS với thư mục tài nguyên của client được cấp ở src/public. và tôi đang muốn làm chức năng nhắn tin giưax các client với nhau, hãy giúp tôi làm chức năng này
