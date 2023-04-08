@@ -10,6 +10,10 @@
     "build": "node index.js",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nvhai248/UChat"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
