@@ -27,6 +27,8 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "postcss": "^8.4.21",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

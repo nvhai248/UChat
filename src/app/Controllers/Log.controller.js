@@ -102,6 +102,11 @@ class LogController {
         await Customer_account.updateOne({ _id: userID }, data);
         res.redirect('/home');
     }
+
+    /*     // [GET] /socket.io.js
+        sendSocketIO = (req, res) => {
+            res.sendFile(__dirname + '../../node_modules/socket.io/client-dist/socket.io.js');
+        } */
 }
 
 module.exports = new LogController();

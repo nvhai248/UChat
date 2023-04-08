@@ -5,6 +5,7 @@ const route = express.Router();
 const log = require('../app/Controllers/Log.controller');
 const upload = require("../configs/multer");
 
+
 // POST /changeInfo 
 route.post('/changeInfo', log.changeInfo);
 
